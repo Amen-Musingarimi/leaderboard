@@ -6,6 +6,30 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <h1>Hello webpack!</h1>
+    <h1>Leaderboard</h1>
+    <section class="mainContainer">
+      <div class="scoresContainer">
+        <div class="firstContainerHeader">
+          <h2>Recent Scores</h2>
+          <button type="button" class="refreshBtn">Refresh</button>
+        </div>
+        <ul class="scoresList"></ul>
+      </div>
+      <div class="formContainer">
+        <h2 class="secondContainerHeader">Add your score</h2>
+        <form>
+          <input type="text" placeholder="Name" required class="nameInput" />
+          <input
+            type="number"
+            placeholder="score"
+            required
+            class="scoreInput"
+          />
+          <p class="errorMessage hide"></p>
+          <button type="button" class="submitBtn">Submit</button>
+        </form>
+      </div>
+    </section>
+    <footer></footer>
   </body>
 </html>
