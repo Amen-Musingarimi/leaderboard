@@ -14,17 +14,16 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Function to submit data
-async function submitData() {
+const submitData = async () => {
   if (nameInput.value.trim() !== '' && scoreInput.value.trim() !== '') {
     await postScore({
       user: nameInput.value.trim(),
       score: +scoreInput.value.trim(),
     });
-    renderScore();
     nameInput.value = '';
     scoreInput.value = '';
   }
-}
+};
 
 // Listen for a click event on the submit button
 submitBtn.addEventListener('click', (e) => {
