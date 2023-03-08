@@ -1,37 +1,56 @@
 import './styles/main.css';
-import Scores from './modules/score.js';
+import getScore from './modules/getScore.js';
+import renderScore from './modules/renderScore.js';
+import postScore from './modules/postScore.js';
 
-const scoresList = document.querySelector('.scoresList');
+const submitBtn = document.querySelector('.submitBtn');
+const nameInput = document.querySelector('.nameInput');
+const scoreInput = document.querySelector('.scoreInput');
+const refreshBtn = document.querySelector('.refreshBtn');
 
-function printScore() {
-  const scoresArray = JSON.parse(localStorage.getItem('scoresArray')) || [];
-  let innerhtml = '';
+// Initial page load
+window.addEventListener('DOMContentLoaded', () => {
+  renderScore();
+});
 
-  scoresArray.forEach((score) => {
-    innerhtml += `
-    <li class="score">
-            <p class="playerName">${score.name}: </p>
-            <p class="playerScore">${score.mark}</p>
-          </li>`;
-  });
-
-  const submitBtn = document.querySelector('.submitBtn');
-  const name = document.querySelector('.nameInput');
-  const score = document.querySelector('.scoreInput');
-
-  submitBtn.addEventListener('click', (event) => {
-    if (name.value !== '' || score.value !== '') {
-      event.preventDefault();
-      const obj = new Scores();
-      obj.addScore(name.value, score.value);
-      printScore();
-
-      name.value = '';
-      score.value = '';
-    }
-  });
-
-  scoresList.innerHTML = innerhtml;
+// Function to submit data
+async function submitData() {
+  if (nameInput.value.trim() !== '' && scoreInput.value.trim() !== '') {
+    await postScore({
+      user: nameInput.value.trim(),
+      score: +scoreInput.value.trim(),
+    });
+    renderScore();
+    nameInput.value = '';
+    scoreInput.value = '';
+  }
 }
 
-printScore();
+// Listen for a click event on the submit button
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  submitData();
+});
+
+// Listen for "keypress" event on nameInput
+nameInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    submitData();
+  }
+});
+
+// Listen for "keypress" event on scoreInput
+scoreInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    submitData();
+  }
+});
+
+// Refresh list
+refreshBtn.addEventListener('click', async () => {
+  window.location.reload();
+  await getScore();
+  renderScore();
+});
