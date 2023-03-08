@@ -9,6 +9,8 @@
 :root {
   --color-white: #fff;
   --color-black: #272a31;
+  --color-blue: #191970;
+  --color-dark-blue: #00008b;
   --color-red: #f00;
   --color-gray-light: #d3d3d3;
   --color-gray: #adadad;
@@ -19,17 +21,38 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-blue);
+  align-items: center;
   font-family: sans-serif;
   position: relative;
+  background-color: var(--color-gray-light);
+}
+
+main {
+  align-self: center;
+  width: 80%;
+  margin: 5%;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  background-color: var(--color-white);
+  height: 100vh;
 }
 
 h1 {
   padding: 3%;
 }
 
+h1,
+h2 {
+  color: var(--color-blue);
+}
+
 .mainContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   justify-content: space-between;
   gap: 5%;
   margin: 0 6% 6% 6%;
@@ -43,21 +66,27 @@ h1 {
 }
 
 .refreshBtn {
-  padding: 2px 6px;
+  width: 80px;
+  align-self: flex-end;
+  padding: 1% 0;
   border: 1px solid var(--color-black);
   background-color: var(--color-white);
-  font-weight: 600;
 }
 
 .scoresList {
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  height: 76vh;
+  overflow: auto;
 }
 
 .score {
   display: flex;
   font-weight: 600;
+  color: var(--color-blue);
+  border-radius: 4px;
   gap: 2%;
-  padding: 1%;
+  padding: 2%;
 }
 
 .score:nth-child(even) {
@@ -68,21 +97,52 @@ h1 {
   margin-bottom: 2%;
 }
 
+.firstContainerHeader,
+.secondContainerHeader {
+  margin-bottom: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 input {
-  padding: 2%;
+  padding: 4%;
   margin-bottom: 2%;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 8px;
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+input:focus {
+  outline-style: none;
+  box-shadow: none;
 }
 
 .submitBtn {
   width: 80px;
   align-self: flex-end;
-  padding: 1% 0;
+  padding: 2% 0;
   background-color: var(--color-white);
+  border: 1px solid var(--color-black);
+}
+
+.refreshBtn,
+.submitBtn {
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
+  border-radius: 8px;
+  background-color: var(--color-gray-light);
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border: none;
 }
 
 .errorMessage {
