@@ -7,6 +7,7 @@ const submitBtn = document.querySelector('.submitBtn');
 const nameInput = document.querySelector('.nameInput');
 const scoreInput = document.querySelector('.scoreInput');
 const refreshBtn = document.querySelector('.refreshBtn');
+const errorMessage = document.querySelector('.errorMessage');
 
 // Initial page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -20,8 +21,11 @@ const submitData = async () => {
       user: nameInput.value.trim(),
       score: +scoreInput.value.trim(),
     });
+    errorMessage.classList.add('hide');
     nameInput.value = '';
     scoreInput.value = '';
+  } else {
+    errorMessage.classList.remove('hide');
   }
 };
 
@@ -49,7 +53,6 @@ scoreInput.addEventListener('keypress', (e) => {
 
 // Refresh list
 refreshBtn.addEventListener('click', async () => {
-  window.location.reload();
   await getScore();
   renderScore();
 });

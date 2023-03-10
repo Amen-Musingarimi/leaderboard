@@ -24,11 +24,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--color-blue);
   align-items: center;
   font-family: sans-serif;
   position: relative;
-  background-color: var(--color-gray-light);
+  background-image: url('../images/game.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 main {
@@ -36,9 +37,10 @@ main {
   width: 80%;
   margin: 5%;
   border: 1px solid var(--color-gray-light);
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: var(--color-white);
-  height: 100vh;
+  opacity: 0.6;
+  height: 80vh;
 }
 
 h1 {
@@ -76,17 +78,41 @@ h2 {
 .scoresList {
   border: 1px solid var(--color-gray);
   border-radius: 8px;
-  height: 76vh;
+  height: 52vh;
   overflow: auto;
 }
 
 .score {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   font-weight: 600;
-  color: var(--color-blue);
+  color: var(--color-dark-blue);
   border-radius: 4px;
   gap: 2%;
   padding: 2%;
+}
+
+.posAndName {
+  display: flex;
+  gap: 20px;
+}
+
+.userIconAndName {
+  display: flex;
+  gap: 10px;
+}
+
+.scoreNumber {
+  color: var(--color-blue);
+  font-size: 14px;
+}
+
+.fa-solid {
+  color: #6f90b0;
+}
+
+.playerScore {
+  align-items: flex-end;
 }
 
 .score:nth-child(even) {
@@ -111,7 +137,7 @@ form {
 input {
   padding: 4%;
   margin-bottom: 2%;
-  border: 1px solid var(--color-gray-light);
+  border: 1px solid var(--color-blue);
   border-radius: 8px;
   color: var(--color-blue);
   font-weight: 600;
@@ -132,17 +158,16 @@ input:focus {
 
 .refreshBtn,
 .submitBtn {
-  color: var(--color-blue);
-  border: 1px solid var(--color-blue);
+  color: var(--color-white);
   border-radius: 8px;
-  background-color: var(--color-gray-light);
+  background-color: var(--color-blue);
   font-weight: 600;
 }
 
 .btn:hover {
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  border: none;
+  background-color: var(--color-gray);
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
 }
 
 .errorMessage {
@@ -158,9 +183,10 @@ input:focus {
 
 footer {
   width: 100%;
-  border: 2px solid var(--color-black);
+  border: 1px solid var(--color-blue);
   position: fixed;
   height: 2.5rem;
   background-color: var(--color-gray-light);
   bottom: 0;
+  border-radius: 8px;
 }
